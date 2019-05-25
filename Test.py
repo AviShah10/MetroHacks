@@ -35,4 +35,3 @@ if __name__ == '__main__':
             w.writerow([tweet.created_at, tweet.full_text.replace('\n', ' ').encode('utf-8'),
                         tweet.user.screen_name.encode('utf-8'),
                         [e['text'] for e in tweet._json['entities']['hashtags']], tweet.user.followers_count])
-
