@@ -1,17 +1,21 @@
 import tweepy
+import sys
+import os
+import jsonpickle
+from twitterscraper import query_tweets
+import json
+import csv
 
-# Consumer keys and access tokens, used for OAuth
-consumer_key = '7EyzTcAkINVS3T2pb165'
-consumer_secret = 'a44R7WvbMW7L8I656Y4l'
-access_token = 'z00Xy9AkHwp8vSTJ04L0'
-access_token_secret = 'A1cK98w2NXXaCWMqMW6p'
+if __name__ == '__main__':
+    list_of_tweets = query_tweets("Trump OR Clinton", 10)
 
-# OAuth process, using the keys and tokens
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+    #print the retrieved tweets to the screen:
+    for tweet in query_tweets("Trump OR Clinton", 10):
+        print(tweet)
 
-# Creation of the actual interface, using authentication
-api = tweepy.API(auth)
-
-# Sample method, used to update a status
-api.update_status('Hello Python Central!')
+    #Or save the retrieved tweets to file:
+    # file = open("output.txt","w")
+    with open("alabama.csv", 'wt', encoding="utf8") as output:
+        writer = csv.writer(output)
+        writer.writerows([tweet.text] for tweet in query_tweets("Abortion", 10))
+    # file.close()
