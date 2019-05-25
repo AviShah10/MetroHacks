@@ -11,5 +11,5 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, compression=True)
 
-for status in tweepy.Cursor(api.home_timeline).items(200):
+for status in tweepy.Cursor(api.search, q="Giraffes", since="2015-10-10", until="2016-10-11", count=100).items(200):
 	print(status._json)
