@@ -1,7 +1,3 @@
-import tweepy
-import sys
-import os
-import jsonpickle
 from twitterscraper import query_tweets
 import json
 import csv
